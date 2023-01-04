@@ -6,9 +6,9 @@ import './index.css'
 const Home = () => {
     
   return (
-    <div className='bg-blue-900 flex flex-col items-center  w-screen height-custom pt-10'>
+    <div className='bg-white flex flex-col items-center  w-screen height-custom pt-10'>
         <div className="flex justify-center">
-        <img className='w-36' src={formIcon} alt="" />
+        <img className='w-36 logo-spin' src={formIcon} alt="" />
         </div>
         <Form/>
     </div>

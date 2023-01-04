@@ -1,3 +1,16 @@
 .height-custom {
    height:696px;
 }
+
+.logo-spin {
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
