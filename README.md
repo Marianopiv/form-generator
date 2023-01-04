@@ -1,0 +1,1 @@
+"Welcome to our form generator! With just a few clicks, you can create custom forms that fit your needs. This code includes a functional form component that allows you to navigate to the form creation page, display existing forms, and handle input values. Thank you for using our tool!"
