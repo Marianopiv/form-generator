@@ -1,0 +1,32 @@
+import { useState } from "react";
+import Swal from "sweetalert2";
+
+
+export function useInputs() {
+  const [form, setForm] = useState({ title: "", inputs: [] });
+  const [inputBorrador, setInputBorrador] = useState({span:"",type:""});
+  const [capturedValue, setCapturedValue] = useState({})
+  const handleBorrador = (e) => {
+    const { value, name } = e.target;
+
+    setInputBorrador({...inputBorrador,[name]:value,value:""});
+  };
+  const handleAddInput = () =>{
+    setForm({ ...form, inputs: [...form.inputs, inputBorrador] })
+    Swal.fire({
+      icon: 'success',
+      title: 'Input agregado',
+    })
+  }
+
+    const handleChangeTitle = (title) => {
+        setForm({...form, title})
+    }    
+
+    const handleValue = (e) => {
+      const {value,name} = e.target;
+      setCapturedValue({...capturedValue,[name]:value})
+    }
+
+  return { handleBorrador, handleAddInput, form, handleChangeTitle, handleValue,capturedValue };
+}
