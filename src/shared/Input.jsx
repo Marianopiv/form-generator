@@ -3,7 +3,7 @@ import React from "react";
 const Input = ({span,type,handleValue,capturedValue}) => {
   console.log(capturedValue)
   return (
-    <div className="flex justify-center items-center gap-10 p-10 mx-2">
+    <div className="flex flex-col justify-center items-center p-10 mx-2">
       <span className="capitalize">{span}</span>
       <input
         className="text-black flex flex-col justify-center rounded-sm"

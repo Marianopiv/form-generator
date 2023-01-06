@@ -1,20 +1,62 @@
-import React from 'react'
-import { useShow } from '../../hook/useShow';
-import { FaFolderOpen,FaWindowClose } from "react-icons/fa";
-import Input from '../../shared/Input';
-import useHash from '../../hook/useHash';
+import React, { useEffect } from "react";
+import { FaWindowClose } from "react-icons/fa";
+import Input from "../../shared/Input";
+import useHash from "../../hook/useHash";
 
-const ListedInputs = ({inputs,handleValue, FinalRecolect, capturedValue,recolected,title}) => {
-    const {generarJson, downloadTxt,jwt} = useHash();
-    const { ChangeShow,show } = useShow();
+const ListedInputs = ({
+  inputs,
+  title,
+  handleValue,
+  capturedValue,
+  ChangeShow,
+  show,
+}) => {
+  const { generarJson, downloadTxt, jwt } = useHash();
+
+  useEffect(() => {
+    
+  }, [show])
+
+
   return (
     <>
-    {show?<><div className='absolute top-0 right-0 bottom-32 left-0 m-auto rounded-md w-2/3 h-2/3 z-50 bg-cyan-200 p-4 shadow-2xl'><FaWindowClose onClick={ChangeShow} className='mx-auto mb-10 hover:cursor-pointer text-2xl'/><h1 className='uppercase font-bold'>{title}</h1>{inputs.map((item, index) => (<>
       
-       <Input type={item.type} span={item.span} key={index} handleValue={handleValue} FinalRecolect={FinalRecolect} capturedValue={capturedValue} recolected={recolected}/></>
-      ))} <button  className='bg-blue-800 mt-4 ml-4 text-white' onClick={()=>generarJson(capturedValue)}>Encrypt File</button><button onClick={()=>downloadTxt(jwt,"form")} className='bg-blue-800  mt-4 ml-4 text-white'>Download Encrypted</button></div></>:<FaFolderOpen className='mx-auto mt-2 hover:cursor-pointer text-2xl' onClick={ChangeShow}/>}
+      {show && (
+        <>
+          <div className="absolute rounded-md  right-0 bottom-44 left-0 m-auto z-50 w-2/3 h-2/3 bg-blue-800 text-white p-2 shadow-2xl">
+            <FaWindowClose
+              onClick={ChangeShow}
+              className="mx-auto mb-10 hover:cursor-pointer text-2xl"
+            />
+            <h1 className="uppercase font-bold text-2xl sm:text-4xl">{title}</h1>
+            {inputs.map((item, index) => (
+              <>
+                <Input
+                  type={item.type}
+                  span={item.span}
+                  key={index}
+                  handleValue={handleValue}
+                  capturedValue={capturedValue}
+                />
+              </>
+            ))}{" "}
+            <button
+              className="bg-cyan-500 w-48  mt-4 ml-4 text-white"
+              onClick={() => generarJson(capturedValue)}
+            >
+              Encrypt File
+            </button>
+            <button
+              onClick={() => downloadTxt(jwt, "form")}
+              className="bg-cyan-500 w-48  mt-4 ml-4 text-white"
+            >
+              Download Encrypted
+            </button>
+          </div>
+        </>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default ListedInputs
+export default ListedInputs;

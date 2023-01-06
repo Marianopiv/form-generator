@@ -4,24 +4,27 @@ import { useNavigate } from "react-router-dom";
 import { useInputs } from "../../hook/useInputs";
 import { Context } from "../../provider/Provider";
 import ListedInputs from "../listedInputs/ListedInputs";
-import nodata from "../../assets/nodata.png"
-
-
+import nodata from "../../assets/nodata.png";
+import { useShow } from "../../hook/useShow";
+import { FaWindowClose } from "react-icons/fa";
 
 const Form = () => {
   const { forms } = useContext(Context);
-  
-  const {handleValue, FinalRecolect, capturedValue} = useInputs()
 
-  const navigate =  useNavigate()
-
+  const navigate = useNavigate();
 
   return (
     <div className="bg-white text-blue-900 flex flex-col gap-10">
       <h1>Generador de formularios</h1>
       <div className="text-center">
-        <h2 className="text-xl pb-8 px-10 font-bold">Genere Sus formularios personalizados con unos pocos clicks, crear formularios a medida nunca fue tan facil!</h2>
-        <button className="bg-cyan-500 w-48 text-white" onClick={()=>navigate("/form-creation")}>
+        <h2 className="text-xl pb-8 px-10 font-bold">
+          Genere Sus formularios personalizados con unos pocos clicks, crear
+          formularios a medida nunca fue tan facil!
+        </h2>
+        <button
+          className="bg-cyan-500 w-48 text-white"
+          onClick={() => navigate("/form-creation")}
+        >
           Crear Form
         </button>
       </div>
@@ -30,19 +33,15 @@ const Form = () => {
           <h2 className=" w-1/2">
             Sin formularios, ingrese un nuevo formulario
           </h2>
-          <img className="w-24" src={nodata} alt="" />
+          <img className="w-24 hidden sm:flex" src={nodata} alt="" />
         </div>
       ) : (
-        <>
-          <div className="">
-            {forms.map(({ title, inputs }, index) => (
-              <>
-                <h2 className="text-3xl capitalize mb-2" key={index}>{title}</h2>
-                <ListedInputs title={title} inputs={inputs} handleValue={handleValue} FinalRecolect={FinalRecolect} capturedValue={capturedValue}/>
-              </>
-            ))}
-          </div>
-        </>
+        <button
+          className="mx-auto bg-cyan-500 text-white"
+          onClick={() => navigate("/created-forms")}
+        >
+          Mostrar Formularios creados
+        </button>
       )}
     </div>
   );
