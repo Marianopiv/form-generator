@@ -31,5 +31,6 @@ export function useInputs() {
     }
 
 
+
   return { handleBorrador, handleAddInput, form, handleChangeTitle, handleValue,capturedValue };
 }

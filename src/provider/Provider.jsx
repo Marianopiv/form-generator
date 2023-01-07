@@ -19,7 +19,11 @@ const Provider = ({ children }) => {
     const { value } = e.target;
     setInputAdded([...inputAdded, value]);
   };
-  return (<Context.Provider value={{addInput,inputAdded,setInputAdded,handleSaveForm,forms}}>{children}</Context.Provider>)
+
+  const eliminateForm = (title) => {
+      setForms(forms.filter((element)=>element.title!==title))
+  }
+  return (<Context.Provider value={{addInput,inputAdded,setInputAdded,handleSaveForm,forms,eliminateForm}}>{children}</Context.Provider>)
 };
 
 export default Provider;

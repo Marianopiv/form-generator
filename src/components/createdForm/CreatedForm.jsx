@@ -8,24 +8,21 @@ import ListedInputs from "../listedInputs/ListedInputs";
 
 const CreatedForm = () => {
   const navigate = useNavigate();
-  const { forms } = useContext(Context);
+  const { forms, eliminateForm } = useContext(Context);
   const { handleValue, capturedValue } = useInputs();
   const { ChangeShow, show } = useShow();
-  const [selectThisForm, setSelectThisForm] = useState(forms)
+  const [selectThisForm, setSelectThisForm] = useState(forms);
 
-  
   const selectForm = (id) => {
-    setSelectThisForm(forms.filter((form)=>form.id===id))
-    ChangeShow()
-  }
+    setSelectThisForm(forms.filter((form) => form.id === id));
+    ChangeShow();
+  };
 
   useEffect(() => {
     if (!show) {
-      setSelectThisForm(forms)
+      setSelectThisForm(forms);
     }
-    
-  }, [show])
-  
+  }, [show, forms]);
 
   return (
     <div className="bg-cyan-200 rounded-lg p-10 w-screen h-screen ">
@@ -35,7 +32,17 @@ const CreatedForm = () => {
       />
       <div className="flex justify-center gap-10 flex-wrap ">
         {selectThisForm.map(({ title, inputs, id }, index) => (
-          <div key={title} className="flex flex-col border-2 rounded-lg p-3 justify-between shadow-2xl">
+          <div
+            key={title}
+            className="flex flex-col border-2 rounded-lg p-3 justify-between shadow-2xl"
+          >
+            <div className="flex justify-center rounded-full items-center">
+              <FaWindowClose
+                color="red"
+                onClick={() => eliminateForm(title)}
+                className="mx-auto mb-10 hover:cursor-pointer text-2xl"
+              />
+            </div>
             <h2 className="text-3xl capitalize mb-2 w-48 " key={index}>
               {title}
             </h2>
@@ -49,7 +56,7 @@ const CreatedForm = () => {
             />
             <FaFolderOpen
               className="mx-auto  hover:cursor-pointer text-2xl"
-              onClick={()=>selectForm(id)}
+              onClick={() => selectForm(id)}
             />
           </div>
         ))}
